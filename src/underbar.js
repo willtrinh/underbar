@@ -49,7 +49,7 @@
 
   // Returns the index at which value can be found in the array, or -1 if value
   // is not present in the array.
-  _.indexOf = function(array, target){
+  _.indexOf = function(array, target) {
     // TIP: Here's an example of a function that needs to iterate, which we've
     // implemented for you. Instead of using a standard `for` loop, though,
     // it uses the iteration helper `each`, which you will need to write.
@@ -99,7 +99,7 @@
     // TIP: map is really handy when you want to transform an array of
     // values into a new array of values. _.pluck() is solved for you
     // as an example of this.
-    return _.map(collection, function(item){
+    return _.map(collection, function(item) {
       return item[key];
     });
   };
@@ -107,25 +107,43 @@
   // Reduces an array or object to a single value by repetitively calling
   // iterator(accumulator, item) for each item. accumulator should be
   // the return value of the previous iterator call.
-  //  
+  //
   // You can pass in a starting value for the accumulator as the third argument
   // to reduce. If no starting value is passed, the first element is used as
   // the accumulator, and is never passed to the iterator. In other words, in
   // the case where a starting value is not passed, the iterator is not invoked
   // until the second element, with the first element as its second argument.
-  //  
+  //
   // Example:
   //   var numbers = [1,2,3];
   //   var sum = _.reduce(numbers, function(total, number){
   //     return total + number;
   //   }, 0); // should be 6
-  //  
+  //
   //   var identity = _.reduce([5], function(total, number){
   //     return total + number * number;
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
   };
+
+
+  // --------------------
+  // ! END OF PART ONE !
+  // --------------------
+  //
+  // Congrats! You've reached the end of Underbar Part 1!
+  //
+  // This means that you should return to Learn and move on to the next lesson:
+  //    - Learn Unit: Debugging
+  //    - Learn Lesson: Before Moving On
+  //
+  // CAUTION:
+  //
+  //   - Do not proceed on to Underbar Part 2 (below) without reading the slides on Scopes & Closure
+  //
+  // --------------------
+
 
   // Determine if the array or object contains a given value (using `===`).
   _.contains = function(collection, target) {
