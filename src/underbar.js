@@ -21,17 +21,19 @@
    * IMPORTANT NOTE!
    * ===========
    *
-   * The .first function is implemented for you, to help guide you toward success
-   * in your work on the following functions. Whenever you see a portion of the
-   * assignment pre-completed, be sure to read and understand it fully before
-   * you proceed. Skipping this step will lead to considerably more difficulty
-   * implementing the sections you are responsible for.
+   * The .first function is implemented for you, to help guide you toward
+   * success in your work on the following functions. Whenever you see a
+   * portion of the assignment pre-completed, be sure to read and
+   * understand it fully before you proceed. Skipping this step will lead
+   * to considerably more difficulty implementing the sections you are
+   * responsible for.
    */
 
   // Return an array of the first n elements of an array. If n is undefined,
   // return just the first element.
   _.first = function(array, n) {
     return n === undefined ? array[0] : array.slice(0, n);
+
   };
 
   // Like first, but for the last elements. If n is undefined, return just the
@@ -140,7 +142,8 @@
   //
   // CAUTION:
   //
-  //   - Do not proceed on to Underbar Part 2 (below) without reading the slides on Scopes & Closure
+  //   - Do not proceed on to Underbar Part 2 (below) without reading the
+  //     slides on Scopes & Closure
   //
   // --------------------
 
@@ -202,7 +205,8 @@
    * =========
    *
    * Now we're getting into function decorators, which take in any function
-   * and return out a new version of the function that works somewhat differently
+   * and return out a new version of the function that works somewhat
+   * differently
    */
 
   // Return a function that can be called at most one time. Subsequent calls
@@ -218,8 +222,8 @@
     // if it hasn't been called before.
     return function() {
       if (!alreadyCalled) {
-        // TIP: .apply(this, arguments) is the standard way to pass on all of the
-        // infromation from one function call to another.
+        // TIP: .apply(this, arguments) is the standard way to pass on all of
+        // the infromation from one function call to another.
         result = func.apply(this, arguments);
         alreadyCalled = true;
       }
@@ -287,7 +291,8 @@
   // going together.
   //
   // Example:
-  // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
+  // _.zip(['a','b','c','d'], [1,2,3])
+  // returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
   };
 
