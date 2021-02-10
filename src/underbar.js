@@ -184,8 +184,8 @@
       collection = collection.slice(1);
     }
     _.each(collection, function(item, index) {
-        accumulator = iterator(accumulator, item);
-      });
+      accumulator = iterator(accumulator, item);
+    });
     return accumulator;
   };
 
