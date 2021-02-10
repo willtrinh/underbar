@@ -57,7 +57,7 @@
       for (var i = 0; i < collection.length; i++) {
         iterator(collection[i], i, collection);
       }
-    } else { // iterate through an object
+    } else if (typeof collection === 'object'){ // iterate through an object
       for (var key in collection) {
         iterator(collection[key], key, collection);
       }
@@ -83,16 +83,41 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
+    var results = [];
+    _.each(collection, function(item, index) {
+      if (test(item, index)) {
+        results.push(item);
+      }
+    });
+    return results;
   };
 
   // Return all elements of an array that don't pass a truth test.
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
+    return _.filter(collection, function(item) {
+      return !test(item);
+    });
+
   };
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
+    var results = [];
+    // for (var i = 0; i < array.length; i++){
+    //   if (!results.includes(array[i])) {
+    //     if (iterator === array[i]) {
+    //       results.push(array[i]);
+    //     } else if (iterator === undefined) {
+    //       results.push(array[i]);
+    //     }
+    //   }
+    // }
+    // only works without iterator
+    return _.filter(array, function(item, index) {
+      if (_.indexOf(array, item) === index) return item;
+  });
   };
 
 
@@ -101,6 +126,11 @@
     // map() is a useful primitive iteration function that works a lot
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
+    var results = [];
+    _.each(collection, function(item, index) {
+      results.push(iterator(item, index));
+    });
+    return results;
   };
 
   /*
@@ -142,6 +172,14 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
+    var memoUndefined = arguments.length < 3;
+    _.each(collection, function(item, index, collection){
+      if(memoUndefined) {
+        memoUndefined = false;
+        accumulator = item;
+      } else accumulator = iterator(accumulator, item, index, collection);
+    });
+  return accumulator;
   };
 
 
