@@ -105,21 +105,25 @@
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
     var results = [];
-    // for (var i = 0; i < array.length; i++){
-    //   if (!results.includes(array[i])) {
-    //     if (iterator === array[i]) {
-    //       results.push(array[i]);
-    //     } else if (iterator === undefined) {
-    //       results.push(array[i]);
-    //     }
-    //   }
-    // }
-    // only works without iterator
-    return _.filter(array, function(item, index) {
-      if (_.indexOf(array, item) === index) {
-        return item;
-      }
-    });
+    if (iterator === undefined) {
+      _.each(array, function(item, index) {
+        if (_.indexOf(results, item) === -1) {
+          results.push(item);
+        }
+      });
+    } else if (iterator !== undefined) {
+      var transformedArr = [];
+      _.each(array, function(item, index) {
+        // transformed the array using the iteratee function
+        transformedArr.push(iterator(item));
+      });
+      _.each(transformedArr, function(item, index) {
+        if (_.indexOf(transformedArr, item) === index) {
+          results.push(array[index]);
+        }
+      });
+    }
+    return results;
   };
 
 
@@ -129,8 +133,8 @@
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
     var results = [];
-    _.each(collection, function(item, index) {
-      results.push(iterator(item, index));
+    _.each(collection, function(item) {
+      results.push(iterator(item));
     });
     return results;
   };
@@ -174,15 +178,14 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
-    var memoUndefined = arguments.length < 3;
-    _.each(collection, function(item, index, collection) {
-      if (memoUndefined) {
-        memoUndefined = false;
-        accumulator = item;
-      } else {
-        accumulator = iterator(accumulator, item, index, collection);
-      }
-    });
+    // accumulator is not passed
+    if (accumulator === undefined) {
+      accumulator = collection[0];
+      collection = collection.slice(1);
+    }
+    _.each(collection, function(item, index) {
+        accumulator = iterator(accumulator, item);
+      });
     return accumulator;
   };
 
