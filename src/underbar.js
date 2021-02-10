@@ -57,7 +57,7 @@
       for (var i = 0; i < collection.length; i++) {
         iterator(collection[i], i, collection);
       }
-    } else if (typeof collection === 'object'){ // iterate through an object
+    } else if (typeof collection === 'object') { // iterate through an object
       for (var key in collection) {
         iterator(collection[key], key, collection);
       }
@@ -116,8 +116,10 @@
     // }
     // only works without iterator
     return _.filter(array, function(item, index) {
-      if (_.indexOf(array, item) === index) return item;
-  });
+      if (_.indexOf(array, item) === index) {
+        return item;
+      }
+    });
   };
 
 
@@ -173,13 +175,15 @@
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
     var memoUndefined = arguments.length < 3;
-    _.each(collection, function(item, index, collection){
-      if(memoUndefined) {
+    _.each(collection, function(item, index, collection) {
+      if (memoUndefined) {
         memoUndefined = false;
         accumulator = item;
-      } else accumulator = iterator(accumulator, item, index, collection);
+      } else {
+        accumulator = iterator(accumulator, item, index, collection);
+      }
     });
-  return accumulator;
+    return accumulator;
   };
 
 
