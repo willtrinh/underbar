@@ -281,6 +281,15 @@
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    _.each(arguments, function(extendObj) {
+      for (var key in extendObj) {
+        // check if key exists and then copy value
+        if (obj[key] === undefined) {
+          obj[key] = extendObj[key];
+        }
+      }
+    });
+    return obj;
   };
 
 
