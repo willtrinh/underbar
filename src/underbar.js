@@ -334,6 +334,19 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    var cache = {};
+    return function() {
+      var key = '';
+      for (var i = 0; i < arguments.length; i++) {
+        key += arguments[i];
+      }
+      if (cache[key] !== undefined) {
+        return cache[key];
+      } else {
+        cache[key] = func.apply(this, arguments);
+        return cache[key];
+      }
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
