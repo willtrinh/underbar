@@ -39,7 +39,7 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    return n === undefined ? array[array.length - 1] : array.slice(Math.max(0, array.length-n));
+    return n === undefined ? array[array.length - 1] : array.slice(Math.max(0, array.length - n));
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -100,7 +100,8 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
-    var unique = {}, results = [];
+    var unique = {};
+    var results = [];
     if (iterator === undefined) {
       _.each(array, function(item) {
         if (_.indexOf(results, item) === -1) {
@@ -261,7 +262,7 @@
     _.each(arguments, function(source) {
       _.each(source, function(value, key) {
         obj[key] = value;
-      })
+      });
     });
     return obj;
   };
@@ -274,7 +275,7 @@
         if (obj[key] === undefined) {
           obj[key] = value;
         }
-      })
+      });
     });
     return obj;
   };
