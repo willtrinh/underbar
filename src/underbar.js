@@ -408,15 +408,13 @@
   _.flatten = function(nestedArray, result) {
     result = [];
 
-    var flattenArray = function(array) {
-      if (!Array.isArray(array)) {
-        result.push(array);
-      }
-      _.each(array, function(item) {
-        flattenArray(item);
-      });
-    };
-    flattenArray(nestedArray);
+    if (!Array.isArray(nestedArray)) {
+      result.push(nestedArray);
+    }
+    _.each(nestedArray, function(item) {
+      result = result.concat(_.flatten(item));
+    });
+
     return result;
   };
 
